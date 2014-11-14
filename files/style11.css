@@ -1,0 +1,50 @@
+/*
+
+    Author: Bunchhieng Soth
+    Created on: 09/25/2014
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Rajdhani);
+
+body {
+   background: #ede4e4;
+}
+
+body p, li {
+    font-weight: bold;
+}
+
+p, li {
+    font-family: Rajdhani;
+}
+
+.contact {
+    display: inline-block;
+}
+
+hr {
+    display: block;
+    border: 1px solid #2616de;
+}
+#pageBorder {
+    padding: 30px;
+    background-color: white;
+    width: 50%;
+    margin: 0 auto;
+}
+
+#banner {
+    background-image: url(images/background-banner.png);
+    border-style: none;
+    border-width: 1px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.title {
+    font-family: monospace;
+    font-size: 19px;
+}

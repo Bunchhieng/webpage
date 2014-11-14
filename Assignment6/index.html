@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Table</title>
+    <!--
+            File: /~bsoth/public_html/assignment6/index.html
+            91.461 Assignment 6: Creating an interactive dyncamic table
+            Bunchhieng Soth, Umass Lowell Computer Science, Bunchhieng_soth@student.uml.edu
+            Created on 10/20/2014 
+
+            This page is validated by www.validator.w3.org
+        -->
+
+    <!-- Load main stylesheet file -->
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    
+    <!-- add favicon -->
+    <link rel="icon" type="image/png" href="img/logo1.jpg">
+
+    <!-- Load jQuery from google cdn -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Load createTable() js file -->
+    <script src="js/test.js"></script>
+</head>
+
+<body>
+    <!-- Header -->
+
+    <div id="header">
+        <img src="img/logo1.jpg" alt="Bun" id="img">
+        <nav>
+            <a href="#">About</a>
+            <a href="#">Table</a>
+            <a href="#">Home</a>
+        </nav>
+    </div>
+    <div id="container">
+        <!-- form to accept four inputs from user then onsubmit event to create table-->
+        <!-- javascript:void(0) stop the page from loading -->
+        <div id="leftDiv" class="column">
+            <section>
+                <h2>Instruction</h2>
+                <p>Please input the following four integers on the right form:
+                    <br />These four numbers will be used to calculate the row and column of the multiplication table.</p>
+                <ul>
+                    <li>Column = End Point - Start Point;</li>
+                    <li>Row = End Point - Start Point;</li>
+                </ul>
+
+                <h3>Assignment No. 6</h3>
+                <h4>Creating an Interactive Dynamic Table</h4>
+                <h5>Date Due: Thursday, October 23, 2014</h5>
+                <p>Note that the numbers that go along the side of the table and those that go along the top (the multiplier and the multiplicand) are arbitrary. The point of this assignment is for you to create a program that can display the table given any arbitrary starting and ending numbers for the multiplier and multiplicand. The human factors part of this assignment is that there are many interesting things that can happen when users enter the four numbers, and we will discuss those in class.</p>
+                <p>Here is an example:</p>
+                <img src="img/IE.png" alt="image" id="example">
+            </section>
+        </div>
+        <div id="centerDiv" class="column">
+            <h4>Creating an interactive dynamic table</h4>
+
+            <!-- form start here -->
+            <form class="form-horizontal" id="form-horizontal" action="javascript:void(0)" onsubmit="createTable()">
+                <h3>Column:</h3>
+                Start Point *:
+                <input type="number" value="1" id="pOne" />
+                <br />End Point *:
+                <input type="number" value="10" id="pTwo" />
+                <br />
+                <h3>Row:</h3>
+                Start Point *:
+                <input type="number" value="3" id="pThree" />
+                <br />End Point *:
+                <input type="number" value="10" id="pFour" />
+                <p id="ppFour"></p>
+                <br />
+                <input type="submit" value="Submit" id="submit">
+                <input type="button" value="Reset" id="reset">
+            </form>
+        </div>
+        <h2 style="text-align:center">Table output here:</h2>
+        <!-- dynamically table on the right of the page -->
+        <div class="column" id="table1">
+            <div id="forTable"></div>
+        </div>
+    </div>
+
+    <!-- start footer -->
+    <div class="footer" id="footer1">
+            <p>&copy; 2014 <a href="mailto:bunchhieng@gmail.com">Bunchhieng Soth</a>
+            </p>
+    </div>
+</body>
+
+</html>

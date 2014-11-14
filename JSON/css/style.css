@@ -1,0 +1,97 @@
+/*
+    File: /~bsoth/public_html/JSON/css/style.css
+    91.461 Assignment 5: Formatting Dynamic Text
+            Bunchhieng Soth, Umass Lowell Computer Science, Bunchhieng_soth@student.uml.edu
+            Created on 10/03/2014
+
+    This is the main stylesheet for index.html.
+*/
+
+/* import google font api for page usage */
+
+@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow);
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+
+/* set body to 80% of the screen browser */
+
+body {
+    width: 80%;
+    margin: auto;
+    font-family: 'PT Sans Narrow';
+    font-size: 22px;
+    background: #F1F1F1;
+}
+
+#main {
+    background-color: #FFFFFF;
+    margin: 20px;
+    padding: 30px;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    border-style: ridge;
+}
+
+/* style the first letter of the first paragraph in firefox class */
+
+p.firefox:first-of-type:first-letter {
+    float: left;
+    font-family: 'Oswald', sans-serif;
+    font-size: 400%;
+    margin: 0 20px;
+    color: #eb0a0a;
+}
+
+/* Style image and caption */
+
+figure {
+    margin-top: 370px;
+    float: right;
+    border: 2px solid #fff;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+/* set font title size to 45px */
+.title {
+    font-size: 45px;
+}
+
+h4 {
+    margin-bottom: 100px;
+}
+
+/* style for navigation bar */
+
+#mainnav {
+    margin: auto;
+    text-align: center;
+}
+
+/* take out underline for link and set border radius */
+
+#mainnav a {
+    padding: 20px;
+    font-size: 20px;
+    color: #ffffff;
+    margin: 0;
+    background: #CA0002;
+    display: inline-block;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* when mouse roll over */
+
+#mainnav a:hover {
+    background: #990000;
+}
+
+/* style for horizontal line hr */
+hr {
+    border: 5px solid #CA0002;
+}
+
+/* style for view source button */
+.button {
+    float: right;
+    text-decoration: none;
+}

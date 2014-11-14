@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- meta tag for bootstrap mobile first view port -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--
+            File: /~bsoth/public_html/JSON/index.html
+            91.461 Assignment 5: Formatting Dynamic Text
+            Bunchhieng Soth, Umass Lowell Computer Science, Bunchhieng_soth@student.uml.edu
+            Created on 10/03/2014
+
+            Formatting text that dynamically extract from JSON file.
+
+            This page is validated by www.validator.w3.org
+        -->
+    <title>JSON</title>
+
+    <!-- link to main stylesheet file -->
+    <!--<link href="css/style.css" rel="stylesheet" type="text/css">-->
+
+    <!-- link to bootstrap cdn css -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!-- 
+          I got this code from lecture note.
+          
+          load jQuery library from the Google Content Delivery Network (CDN)
+          see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+          however, note that you obviously must be online for this to work
+          alternatively, you can download jQuery and store it locally from
+          http://jquery.com/download/
+        -->
+    <script src="jquery-2.1.1.min.js"></script>
+
+    <!--
+          This code is taken from lecture note.
+          load the JSON file containing the text of Lincoln's Gettysburg address            
+        -->
+    <script type="text/javascript">
+        var story;
+
+         // Note to advanced students:
+         //   Do *NOT* use the jQuery getJSON function here, because in this 
+         // application the AJAX call has to be synchronous (that is, we need to 
+         // wait for it to be done before continuing), and the getJSON function 
+         // is always asynchronous.  Reference:
+         // http://stackoverflow.com/questions/2765411/is-it-possible-to-set-asyncfalse-to-getjson-call
+         //   The other approach is to change the global jQuery ajaxSetup option, 
+         // but this is controversial, as discussed on the referenced page.
+        jQuery.ajax({
+            dataType: "json",
+            async: false,
+            url: "news.json",
+            success: function (data) {
+                story = data;
+            }
+        });
+
+        $(document).ready(function () {
+            placeContent();
+        });
+    </script>
+
+    <!-- 
+          This code is taken from lecture note.
+
+          script to determine browser type and set first paragaph class appropriately 
+        -->
+    <script type="text/javascript">
+        var strFirstParaClass = "";
+        var strNavString = navigator.userAgent;
+        if (strNavString.indexOf("Firefox") !== -1) {
+            strFirstParaClass = "Firefox";
+        } else if (strNavString.indexOf("Chrome") !== -1) {
+            strFirstParaClass = "Chrome";
+        } else if (strNavString.indexOf("Safari") !== -1) {
+            strFirstParaClass = "Safari";
+        }
+    </script>
+
+    <!-- script to place JSON text in the placeholder on this page. -->
+    <script type="text/javascript">
+        function placeContent() {
+            // N.B This version *does* apply css
+            var strContent = "";
+
+            // Create dynamic content from JSON
+            strContent += "<h1 class='title'>" + story.title + "</h1>";
+            strContent += "<h2 class='author'>by " + story.author + "</h2>";
+            strContent += "<h3 class='date'>" + story.date + "</h3>";
+            strContent += "<h3 class='location'>" + story.location + "</h3>";
+            strContent += "<h3 class='source'>" + "<a href='http://www.cnn.com' target='_blank'>" + story.source + "</a>" + "</h3>";
+
+            // loop through all the paragraphs and sentences
+            for (var para = 0; para < story.text.paragraphs.length; para++) {
+                strContent += "<p class=\"firefox\">";
+                for (var sent = 0; sent < story.text.paragraphs[para].length; sent++) {
+                    strContent += story.text.paragraphs[para][sent] + "&nbsp; ";
+                }
+                strContent += "</p>";
+            }
+
+            // place dynamic content on page
+            // document.getElementid("content").innerHTML = strContent;
+            // The jQuery way
+            $("#content").html(strContent);
+        }
+    </script>
+
+    <!--
+        view source code of the index.html 
+        -->
+    <script type="text/javascript">
+        function viewSource() {
+            window.location = "view-source:" + window.location;
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">JSON Project</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a>
+                    </li>
+                    <li><a href="http://www.cnn.com/US/">U.S.</a>
+                    </li>
+                    <li><a href="http://www.cnn.com/WORLD/">World</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">More<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Hello</a>
+                            </li>
+                            <li><a href="#">Another action</a>
+                            </li>
+                            <li><a href="#">Something else here</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="#">Separated link</a>
+                            </li>
+                            <li><a href="#">One more separated link</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+
+    </div>
+    <div class="container">
+        <div class="starter-template">
+            <h2>Formatting Dynamic Text</h2>
+            <p>Bunchhieng Soth, <a href="mailto:bunchhieng_soth@student.uml.edu">Bunchhieng_soth@student.uml.edu</a>
+            </p>
+            <h4>Computer Science, UMass Lowell</h4>
+
+            <!-- image and caption -->
+            <figure>
+                <img src="img/ebola.jpeg" class="img-responsive" alt="Responsive image">
+                <figcaption>Fig.1 - Ebola virus (EBOV, formely designated Zaire ebolavirus)</figcaption>
+            </figure>
+
+            <!-- dynamic content -->
+            <div id="content"></div>
+
+            <hr>
+            <a class="button" href=javascript:viewSource() target="_blank">View Source</a>
+        </div>
+    </div>
+</body>
+
+</html>

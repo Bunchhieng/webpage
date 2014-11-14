@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script type=text/javascript src="//assets.insnw.net/instart/js/week-144-0/loader/instart.js"></script>
+    <script type=text/javascript>
+        INSTART.Init({
+            "apiDomain": "assets.insnw.net",
+            "disableInjectionXhr": true,
+            "disableInjectionXhrQueryParam": "instart_disable_injection",
+            "disableInstantLoadLinkCss": true,
+            "disableInstantLoadUrls": [],
+            "iframeCommunicationTimeout": 3000,
+            "partialImage": false,
+            "rId": "34",
+            "release": "week-144-0",
+            "rum": true,
+            "ver": "loader",
+            "virtualDomains": 4,
+            "virtualizeDomains": ["^.*\\.quora\\.com$", "^api\\.quora\\.com$", "^geo\\.quora\\.com$", "^qim\\.cf\\.quoracdn\\.net$", "^qlx\\.cf\\.quoracdn\\.net$", "^qph\\.cf\\.quoracdn\\.net$", "^qsc\\.cf\\.quoracdn\\.net$", "^qsf\\.cf\\.quoracdn\\.net$", "^quora\\.com$", "^www\\.quora\\.com$"]
+        });
+    </script>
+    <script>
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.execute = function (a) {
+            var b = a.fn,
+                c = a.env;
+            b.apply(c)
+        }, script_defer_queue.push = function (a) {
+            script_defer_queue.length === 0 ? script_defer_queue.execute(a) : Array.prototype.push.apply(script_defer_queue, [a])
+        }, script_defer_queue.execute_ready = function () {
+            while (script_defer_queue.length > 0 && !script_defer_queue[0].marker) script_defer_queue.execute(script_defer_queue[0]), script_defer_queue.shift()
+        }, script_defer_queue.pkg_loaded = function () {
+            script_defer_queue.length > 0 && script_defer_queue[0].marker === !0 && script_defer_queue.shift(), script_defer_queue.execute_ready()
+        }, script_defer_queue.execute_ready(), this.require || function (global, undefined) {
+            function require(a) {
+                if (!exported[a]) {
+                    rec("loader.require", "Required", a);
+                    var b, c = installed[a];
+                    c && (c.id = a, c.exports = b = {}, c(function (b) {
+                        return demand(b, a)
+                    }, exported[a] = b, c), c.exports && c.exports !== b && (exported[a] = c.exports), rec("loader.require.export" + (c.lazy ? ".lazy" : ""), "Exported", a))
+                }
+                return used[a] = !0, exported[a]
+            }
+
+            function demand(a, b) {
+                return require(a = absolutize(a, b)) || raise(a)
+            }
+
+            function raise(a) {
+                throw a
+            }
+
+            function absolutize(a, b) {
+                if (b && /^\./.test(a)) {
+                    a = "/" + b + "/../" + a;
+                    while (a != (b = a.replace(rel_path_exp, "/"))) a = b
+                }
+                return a.replace(/^\//, "")
+            }
+
+            function deps(a) {
+                if (!a.unmet) {
+                    var b = a + "",
+                        c, d = a.unmet = {};
+                    require_exp.lastIndex = 0;
+                    while (c = require_exp.exec(b)) d[c[1]] = 1;
+                    return d
+                }
+                return a.unmet
+            }
+
+            function ready(a) {
+                if (typeof a == "object" || a.ready || a.seen) return !0;
+                var b, c = {},
+                    d = deps(a),
+                    e;
+                for (e in d) a.seen = !0, exported[e] && ready(exported[e]) || installed[e] && ready(installed[e]) ? c[e] = 1 : b = 1, delete a.seen;
+                for (e in c) delete d[e];
+                if (b) {
+                    rec("missing modules:");
+                    for (e in d) rec(e)
+                }
+                return a.ready = !b, !b
+            }
+
+            function log() {
+                try {
+                    var a = global.console;
+                    a && a.log.apply(a, arguments)
+                } catch (b) {}
+            }
+
+            function flushQueue() {
+                if (!flushing) try {
+                    while (qhead !== qtail && ready(qhead.next)) flushing = qhead, qhead = qhead.next, delete flushing.next, rec("loader.flushQueue", "Start"), qhead(demand), rec("loader.flushQueue", "Finish")
+                } finally {
+                    flushing = 0
+                }
+            }
+
+            function rec() {
+                var a = global;
+                return a.log && a.log.enabled && a.log.apply(a.log, arguments), history[history.length] = {
+                    time: +(new Date),
+                    tags: history.slice.call(arguments)
+                }
+            }
+            var history = [],
+                installed = {},
+                exported = {},
+                used = {},
+                qhead = {},
+                qtail = qhead,
+                flushing, require_exp = /require\(['"]([^'"]+)['"]\)/g,
+                rel_path_exp = /\/(\.?|[^\/]+\/\.\.)\//;
+            require.install = function (a, b, c) {
+                rec("loader.install" + (b.lazy ? ".lazy" : ""), "Installing", a), c && (b.unmet = c);
+                var d = typeof b == "object" ? exported : installed;
+                d[a] || (d[a] = b, flushQueue())
+            }, require.installLazy = function (id, code, depends) {
+                var module = function (require, exports, module) {
+                    window._evalCallArgs = arguments, eval("(function(require,exports,module){" + code + "//*/\n}).apply(window, window._evalCallArgs)")
+                };
+                module.lazy = !0, require.install(id, module, depends)
+            }, require.enqueue = function (a) {
+                qtail = qtail.next = a, qhead.next === qtail && ready(a) && flushQueue()
+            }, require.stats = function () {
+                var a = {},
+                    b = "",
+                    c = "",
+                    d = {},
+                    e = [],
+                    f, g;
+                for (g in installed) {
+                    var h = installed[g] + "";
+                    g in used ? b += h : (a[g] = !0, c += h), d[g] = h.length
+                }
+                f = b.length + c.length;
+                for (g in installed) g.startsWith("internal") || e.push([g, 100 * d[g] / f]);
+                return console.log("Used modules:", Object.keys(used).length, "Unused modules:", Object.keys(a).length), console.log("Used JS size:", b.length, "Unused JS size:", c.length, 100 * b.length / f), console.table(e), {
+                    used: Object.keys(used),
+                    unused: Object.keys(a),
+                    installed: installed,
+                    exported: exported,
+                    usedJS: b,
+                    unusedJS: c,
+                    percents: e,
+                    sizes: d
+                }
+            }, rec.dump = function () {
+                return history.slice()
+            }, global.rec = rec, global.require = require, rec("loader", "Ready")
+        }(this);;
+        require.install("settings", {
+            revision: "166550c56e96c9a95c0e04bfc235c0df7f04b1f3",
+            installTime: rec("settings", "install").time,
+            instance: "main",
+            formkey: "8fd95952fae82e8ab9a6681a3b386707",
+            postkey: "952f311d31893ac47106f7b2bafebd84",
+            uid: null,
+            controller: "index",
+            action: "index",
+            codebaseType: "production",
+            cookiePrefix: "m",
+            trail: null,
+            actionTrail: null,
+            mobile: false,
+            serverCallUrl: "/webnode2/server_call_POST?__instart__",
+            scribeSampleRate: 1.000000,
+            pageMode: "live" || "live",
+            feedAnchoring: false,
+            requireBase: "https://qsc.is.quoracdn.net/-2b2bd6fc8f2c7c0a/",
+            debug: false,
+            componentDebug: false,
+            appURL: null,
+            fbAppId: "136609459636",
+            googleClientId: "917071888555.apps.googleusercontent.com",
+            googleCookiePolicy: "http://quora.com",
+            androidAppPackageName: "com.quora.android",
+            mobileRedirect: false,
+            enableFrameBusting: true,
+            keyboardShortcuts: false,
+            isParallel: true,
+            client_side_js_load_delays_enabled: true,
+            client_side_logging: false,
+            client_side_server_call_error_notifications: true,
+            client_side_server_call_error_logging_percentage: 0.0,
+            subdomain_name: null,
+            subdomain_suffix: "quora.com",
+            default_base_url: "quora.com",
+            default_uri_subdomain_name: null,
+            force_use_absolute_links: false,
+            qtext_improvement_spacing: false,
+            qtext_improvement_list: false,
+            new_grid: true,
+            e2e_sample_rate: 0.100000,
+            history_state_cookie_name: "hs-96c0e5aa4c",
+            enable_history_state: false,
+            save_feed_story_debug: false,
+            w2_modals_enabled: false
+        });
+
+        require.install("gating", {
+
+        });
+
+        var clicks = [],
+            handleClicks = !0,
+            handleUnready = function (a) {
+                if (!handleClicks) return;
+                var b = a.target;
+                while (b && b.tagName && b.tagName != "A") b = b.parentNode;
+                if (b && b.getAttribute && b.getAttribute("href") === "#") {
+                    clicks.push(a.target);
+                    var c = document.getElementById("async_spinner");
+                    if (!c) {
+                        c = document.createElement("div"), c.setAttribute("id", "async_spinner"), c.setAttribute("class", "__live_spinner");
+                        var d = document.createElement("div");
+                        d.setAttribute("class", "__live_spinner_indicator"), require.enqueue(function () {
+                            var a = require("spin").createSpinnerElement({
+                                color: "#fff"
+                            }).el;
+                            d.appendChild(a), c.appendChild(d), document.body.appendChild(c)
+                        })
+                    }
+                }
+            },
+            clearHandlers = function () {
+                if (!handleClicks) return;
+                handleClicks = !1, document.detachEvent ? document.detachEvent("onclick", handleUnready) : document.removeEventListener("click", handleUnready, !0);
+                for (var a = 0; a < clicks.length; ++a) clicks[a].click();
+                var b = document.getElementById("async_spinner");
+                b && b.parentNode.removeChild(b)
+            };
+        document.attachEvent ? document.attachEvent("onclick", handleUnready) : document.addEventListener("click", handleUnready, !0);;
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="/opensearch/description.xml" title="Quora" />
+    <meta name="robots" content="noarchive" />
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                window.lazyJQuery = true;
+                if (window.log && log.enabled)
+                    log('page', 'Loading JS modules...');
+            }
+        });
+    </script>
+    <link href='https://qsc.is.quoracdn.net/-7a77b5a66b4c94b0.css' rel='stylesheet' type='text/css' />
+    <script>
+        var __W2__shouldUseNewContentForLoadingSpinner = true;
+    </script>
+    <script type='text/javascript' src='https://qsc.is.quoracdn.net/-3ae9b173ba5735d7.js'></script>
+    <script>
+        script_defer_queue = script_defer_queue || [];
+        Array.prototype.push.call(script_defer_queue, {
+            marker: true
+        });
+    </script>
+    <script type='text/javascript' src='https://qsc.is.quoracdn.net/-34b0c0e811587abb.js' async defer></script>
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                if (window.log && log.enabled)
+                    log('page', 'Done. Header chunk is processed.');
+            }
+        });
+    </script>
+    <title>Quora - Your Best Source for Knowledge</title>
+    <link rel="canonical" href="http://www.quora.com/" />
+    <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.quora.com/rss" />
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                if (window.w2_timing)
+                    w2_timing.logTime('bodyChunkStart');
+            }
+        });
+    </script>
+</head>
+
+<body class='logged_out_page_big_signup'>
+    <div class="InteractionModeBanner" id="__w2_YdWCG1r_banner">
+        <div id="__w2_YdWCG1r_message">There are updates to this page that haven&#039;t been applied because you&#039;ve entered text. <a href="#" id="__w2_YdWCG1r_resume">Refresh this page</a> to see updates.</div>
+    </div>
+    <div class="ErrorBanner" id="__w2_LesdWg8_banner">
+        <div id="__w2_LesdWg8_message"><span id="__w2_LesdWg8_text"></span><a href="#" id="__w2_LesdWg8_hide">Hide this message</a>.</div>
+    </div>
+    <div class="modal_overlay hidden" id="__w2_modal_overlay_">
+        <div class="modal_wrapper normal">
+            <div id="__w2_modal_frame_placeholder_"></div>
+        </div>
+    </div>
+    <div id="ld_gvvnum_429">
+        <div class="PMsgContainer hidden" id="__w2_spZW02M_pmsg_container"></div>
+        <div class="main_full_width content contents main_content ContentWrapper">
+            <div id="__w2_kNsBOPU_content">
+                <div id="ld_ggskro_49710">
+                    <div class="HomeLoggedOut HomeLoggedOutBigSignup">
+                        <div class="logo"></div>
+                        <div class="tagline">
+                            <h1>Sign up to read Quora</h1>
+                            <h2>The best answer to any question</h2>
+                        </div>
+                        <div class="spacer"></div>
+                        <div class="container">
+                            <div class="signup">
+                                <div class="signup_form_big_buttons">
+                                    <div class="col connected_photo_wrapper  hidden" id="__w2_nl7jdNC_connected_photo_wrapper">&nbsp;
+                                        <div class="hidden br3 tease_box connected_photo" id="__w2_nl7jdNC_connected_info">
+                                            <img src="https://qsf.is.quoracdn.net/-24b280cb3f0a234e.gif" style="float:left;width:50px;" id="__w2_nl7jdNC_connected_pic" />
+                                            <label class="hidden" style="width:50px" id="__w2_nl7jdNC_fb_info">
+                                                <img src="https://qsf.is.quoracdn.net/-3f97e9658610fd24.gif" style="padding-right: 5px;" /><strong id="__w2_nl7jdNC_fb_name"></strong>
+                                            </label>
+                                            <label class="hidden" style="width:50px" id="__w2_nl7jdNC_twitter_info">
+                                                <img width="16" style="padding-right: 5px;" height="16" src="https://qsf.is.quoracdn.net/-717943ea2ab806b1.png" /><strong id="__w2_nl7jdNC_tw_name"></strong>
+                                            </label>
+                                            <label class="hidden" style="width:50px" id="__w2_nl7jdNC_goog_info">
+                                                <img width="16" style="padding-right: 5px;" height="16" src="https://qsf.is.quoracdn.net/-0221ae28fc359ca7.png" /><strong id="__w2_nl7jdNC_goog_name"></strong>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="e_col w3_5 signup_form">
+                                        <form class="" action="/signup/signup_POST/" method="POST" target="_self" id="__w2_nl7jdNC_form">
+                                            <input type="hidden" name="formkey" value="8fd95952fae82e8ab9a6681a3b386707" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="code" w2cid="nl7jdNC" id="__w2_nl7jdNC_code" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="group" w2cid="nl7jdNC" id="__w2_nl7jdNC_group" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="source_user_name" w2cid="nl7jdNC" id="__w2_nl7jdNC_source_user_name" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="source_url" w2cid="nl7jdNC" id="__w2_nl7jdNC_source_url" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="signup_form" value="SignupFormBigButtonsOneClick" w2cid="nl7jdNC" id="__w2_nl7jdNC_signup_form" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="source" value="home" w2cid="nl7jdNC" id="__w2_nl7jdNC_source" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" w2cid="nl7jdNC" id="__w2_nl7jdNC_fb_uid" />
+                                            <input group="__w2_nl7jdNC_interaction" type="hidden" w2cid="nl7jdNC" id="__w2_nl7jdNC_tw_uid" />
+                                            <div class="row " id="__w2_nl7jdNC_step_1">
+                                                <div class="row step_1_header"></div>
+                                                <div class="row">
+                                                    <div class="e_col connect_buttons instruction_text three_connect_buttons" id="__w2_nl7jdNC_connect_buttons">
+                                                        <div class="row connect_buttons_row"><a class="google_button submit_button" href="#" tabindex="5" id="__w2_hZVrx3J_google_connect_button"><span class="google_button_text">Sign Up With Google</span></a><span class="hidden connected_link_text google_connected_link_text br3" id="__w2_nl7jdNC_google_connected">Connected to Google</span>
+                                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="goog_access_token" w2cid="nl7jdNC" id="__w2_nl7jdNC_goog_access_token" /><a class="facebook_button submit_button" href="#" tabindex="6" id="__w2_bDL7c2J_facebook_connect_button"><span class="facebook_button_text">Sign Up With Facebook</span></a><span class="hidden connected_link_text facebook_connected_link_text br3" id="__w2_nl7jdNC_facebook_connected">Connected to Facebook</span>
+                                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="fb_access_token" w2cid="nl7jdNC" id="__w2_nl7jdNC_fb_access_token" />
+                                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="fb_expires" w2cid="nl7jdNC" id="__w2_nl7jdNC_fb_expires" /><a class="twitter_button submit_button" href="#" tabindex="6" id="__w2_BPIGlZx_twitter_connect_button">Sign Up With Twitter</a><span class="hidden connected_link_text twitter_connected_link_text br3" id="__w2_nl7jdNC_twitter_connected">Connected to Twitter</span>
+                                                            <input group="__w2_nl7jdNC_interaction" type="hidden" name="twitter_oauth_key" w2cid="nl7jdNC" id="__w2_nl7jdNC_tw_oauth_key" />
+                                                        </div>
+                                                        <div id="__w2_nl7jdNC_connect_explanation"><a class="signup_email_link" href="#" tabindex="8" id="__w2_nl7jdNC_bypass_connect_link">Sign Up With Email</a>. <span class="tos_disclaimer">By signing up you indicate that you have read and agree to the <a href="/about/tos" target="_blank">Terms of Service</a>.</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="hidden step_2 row" id="__w2_nl7jdNC_step_2">
+                                                <h2><span id="__w2_nl7jdNC_step_2_header_prefix"></span>Sign Up</h2>
+                                                <div class="stacked_form e_col p1">
+                                                    <div class="form_row">
+                                                        <label>Full Name</label>
+                                                        <input class="text" group="__w2_nl7jdNC_interaction" name="name" autocorrect="off" value="" autocapitalize="words" type="text" tabindex="9" w2cid="nl7jdNC" id="__w2_nl7jdNC_name" />
+                                                        <div class="hidden __w2_Sr1zzZs_invalid input_validation_error_text" id="__w2_Sr1zzZs_invalid_message"></div><span class="hidden input_valid __w2_Sr1zzZs_valid input_status"></span><span class="hidden input_invalid __w2_Sr1zzZs_invalid input_status"></span>
+                                                        <div class="hidden ">Checking...</div>
+                                                    </div>
+                                                    <div class="form_row">
+                                                        <label>Email</label>
+                                                        <input class="text" group="__w2_nl7jdNC_interaction" type="text" name="email" value="" tabindex="10" w2cid="nl7jdNC" id="__w2_nl7jdNC_email" />
+                                                        <div class="hidden __w2_SU40Ino_invalid input_validation_error_text" id="__w2_SU40Ino_invalid_message"></div><span class="hidden input_valid __w2_SU40Ino_valid input_status"></span><span class="hidden input_invalid __w2_SU40Ino_invalid input_status"></span>
+                                                        <div class="hidden ">Checking...</div>
+                                                    </div>
+                                                    <div class="form_row">
+                                                        <label>Password</label>
+                                                        <input class="text" group="__w2_nl7jdNC_interaction" type="password" name="password" tabindex="11" w2cid="nl7jdNC" id="__w2_nl7jdNC_password" />
+                                                        <div class="hidden __w2_xhmwLxA_invalid input_validation_error_text" id="__w2_xhmwLxA_invalid_message"></div><span class="hidden input_valid __w2_xhmwLxA_valid input_status"></span><span class="hidden input_invalid __w2_xhmwLxA_invalid input_status"></span>
+                                                        <div class="hidden ">Checking...</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row small"><span class="light_gray tos_disclaimer">By clicking &quot;Sign Up&quot; you indicate that you have read and agree to the <a href="/about/tos" target="_blank">Terms of Service</a>.</span>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="form_buttons" id="__w2_nl7jdNC_create_account"><span class="light"><a class="cancel" href="#" id="__w2_nl7jdNC_cancel">Cancel</a></span>
+                                                        <input class="submit_button" group="__w2_nl7jdNC_interaction" type="submit" value="Sign Up" tabindex="12" w2cid="nl7jdNC" id="__w2_nl7jdNC_submit" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="row hidden connected_friends_list" id="__w2_nl7jdNC_connected_friends_list">&nbsp;</div>
+                                </div>
+                            </div>
+                            <div class="login">
+                                <div id="ld_eotdvm_48319">
+                                    <div id="__w2_j0OBwyY_logged_out_header_login">
+                                        <div class="associated_login" id="__w2_j0OBwyY_associated"></div>
+                                        <div class="regular_login">
+                                            <form class="inline_login_form" method="POST" id="__w2_j0OBwyY_login_form">
+                                                <div class="title">Login</div>
+                                                <div class="form_inputs">
+                                                    <div class="hidden small_login_preview e_col" id="__w2_j0OBwyY_preview">
+                                                        <img width="25" height="25" id="__w2_j0OBwyY_pic" />
+                                                    </div>
+                                                    <div class="form_column">
+                                                        <input class="text header_login_text_box ignore_interaction" group="__w2_j0OBwyY_interaction" type="text" placeholder="Email" name="email" tabindex="1" w2cid="j0OBwyY" id="__w2_j0OBwyY_email" />
+                                                        <div class="remember_me" group="__w2_j0OBwyY_login_options" id="__w2__u_KEGDOjcMuQ">
+                                                            <input class="passwordless_checkbox ignore_interaction" group="__w2_j0OBwyY_interaction" type="checkbox" checked="checked" name="allow_passwordless" value="allow_passwordless" tabindex="3" w2cid="j0OBwyY" id="__w2_j0OBwyY_allow_passwordless" />Remember Me</div>
+                                                    </div>
+                                                    <div class="form_column">
+                                                        <input class="text header_login_text_box ignore_interaction" group="__w2_j0OBwyY_interaction" type="password" placeholder="Password" name="password" tabindex="2" w2cid="j0OBwyY" id="__w2_j0OBwyY_password" />
+                                                        <div group="__w2_j0OBwyY_login_options" id="__w2__u_srp72gkTbR"><a class="forgot_password" href="#" id="__w2_j0OBwyY_forgot_password_link">Forgot Password?</a>
+                                                        </div>
+                                                    </div>
+                                                    <input class="submit_button ignore_interaction" group="__w2_j0OBwyY_interaction" type="submit" value="Login" tabindex="4" w2cid="j0OBwyY" id="__w2_j0OBwyY_submit_button" />
+                                                    <div id="__w2_j0OBwyY_errors">
+                                                        <p class="hidden input_validation_error_text" id="__w2_j0OBwyY_email_not_confirmed_error">Please confirm your email address. <a href="#" id="__w2_j0OBwyY_resend_confirmation">Resend Confirmation Link</a>
+                                                        </p><span class="hidden input_validation_error_text" id="__w2_j0OBwyY_email_not_found_error">No account found for this email. Retry, or <a href="/" id="__w2_j0OBwyY_email_not_found_signup_link">Sign up for Quora.</a></span><span class="hidden input_validation_error_text" id="__w2_j0OBwyY_incorrect_password_error">Incorrect password.  <a href="#" id="__w2_j0OBwyY_reset_password_link">Reset Password</a></span>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer_nav row">
+                            <div class="e_col footer_links w8">
+                                <ul class="nav_list">
+                                    <li class="about"><a href="/about">About</a>
+                                    </li>
+                                    <li class="careers"><a href="/careers">Careers</a>
+                                    </li>
+                                    <li class="privacy"><a href="/about/privacy">Privacy</a>
+                                    </li>
+                                    <li class="sitemap"><a href="/sitemap">Sitemap</a>
+                                    </li>
+                                    <li class="tos"><a href="/about/tos">Terms</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ld_gvvnum_430"></div>
+    <div class="__live_spinner hidden" id="__w2_CPcL0nG_loading">
+        <div class="__live_spinner_indicator" id="__w2_CPcL0nG_spinner"></div>
+    </div>
+    <div id="ld_gvvnum_431"></div>
+    <div id="ld_gvvnum_432"></div>
+    <div class="tiny_swf">
+        <div id="__w2_yD9mbYJ_flash"></div>
+    </div>
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                if ($.loader) $.loader(window);
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                require.enqueue(function (require) {
+                    require('webnode2').windowId = "dep3609-1895137764478511736";
+                });
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                require.enqueue(function (require) {
+                    require("tchannel_up").start(0, "main-w-dep3609-1895137764478511736", "chan8-8880", "quora.com", "");
+                });
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                require.enqueue(function (require) {
+                    require("cookies").cookie("tz", new Date().getTimezoneOffset(), {
+                        "path": "/"
+                    });
+                });
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var script_defer_queue = script_defer_queue || [];
+        script_defer_queue.push({
+            env: window,
+            fn: function () {
+                $.whenIdle(350, 350, function () {
+                    require.enqueue(function (require) {
+                        if (window.w2_timing)
+                            w2_timing.logTime('componentInitStart');
+                        var W2 = require('webnode2'),
+                            LiveNode = require('w2.livenode');
+                        W2.addComponentMetadata({
+                            parents: {
+                                "N8RfwTK": "uZQoCxc",
+                                "bDL7c2J": "nl7jdNC",
+                                "YU7HZNP": "kNsBOPU",
+                                "nl7jdNC": "F0XXnOZ",
+                                "FnBGiaR": "kNsBOPU",
+                                "yCpALof": "Bliox4i",
+                                "yD9mbYJ": "*ROOT*",
+                                "SU40Ino": "nl7jdNC",
+                                "F0XXnOZ": "kNsBOPU",
+                                "f3FoFW6": "N8RfwTK",
+                                "uZQoCxc": "F0XXnOZ",
+                                "jxj9DQ9": "F0XXnOZ",
+                                "j0OBwyY": "F0XXnOZ",
+                                "J5puSpV": "mrFWjU9",
+                                "LesdWg8": "*ROOT*",
+                                "j4SnVen": "N8RfwTK",
+                                "mrFWjU9": "*ROOT*",
+                                "hZVrx3J": "nl7jdNC",
+                                "GsSIsp8": "*ROOT*",
+                                "xhmwLxA": "nl7jdNC",
+                                "IEmK6Nl": "N8RfwTK",
+                                "YdWCG1r": "*ROOT*",
+                                "cq3hYOb": "*ROOT*",
+                                "RMGPLph": "kNsBOPU",
+                                "Sr1zzZs": "nl7jdNC",
+                                "ikBoXM4": "*ROOT*",
+                                "Bliox4i": "*ROOT*",
+                                "kNsBOPU": "mrFWjU9",
+                                "xzC3Clr": "N8RfwTK",
+                                "fDjuCkm": "*ROOT*",
+                                "xVWIzv2": "N8RfwTK",
+                                "spZW02M": "kNsBOPU",
+                                "iP3VQ5f": "nl7jdNC",
+                                "CPcL0nG": "*ROOT*",
+                                "BPIGlZx": "nl7jdNC"
+                            },
+                            children: {
+                                "nl7jdNC": {
+                                    "email_validator": "SU40Ino",
+                                    "name_validator": "Sr1zzZs",
+                                    "google_connect_button": "hZVrx3J",
+                                    "password_validator": "xhmwLxA",
+                                    "facebook_connect_button": "bDL7c2J",
+                                    "twitter_connect_button": "BPIGlZx"
+                                }
+                            },
+                            knowsAbout: {
+                                "F0XXnOZ": {
+                                    "home_logged_out": "."
+                                },
+                                "nl7jdNC": {
+                                    "facebook_connect_button": "facebook_connect_button"
+                                },
+                                "mrFWjU9": {
+                                    "content": "content",
+                                    "layout": "."
+                                },
+                                "j0OBwyY": {
+                                    "inline_login": "."
+                                }
+                            },
+                            groups: {
+                                "__w2_j0OBwyY_login_options": ["__w2__u_KEGDOjcMuQ", "__w2__u_srp72gkTbR"],
+                                "__w2_nl7jdNC_interaction": ["__w2_nl7jdNC_code", "__w2_nl7jdNC_group", "__w2_nl7jdNC_source_user_name", "__w2_nl7jdNC_source_url", "__w2_nl7jdNC_signup_form", "__w2_nl7jdNC_source", "__w2_nl7jdNC_fb_uid", "__w2_nl7jdNC_tw_uid", "__w2_nl7jdNC_goog_access_token", "__w2_nl7jdNC_fb_access_token", "__w2_nl7jdNC_fb_expires", "__w2_nl7jdNC_tw_oauth_key", "__w2_nl7jdNC_name", "__w2_nl7jdNC_email", "__w2_nl7jdNC_password", "__w2_nl7jdNC_submit"],
+                                "__w2_j0OBwyY_interaction": ["__w2_j0OBwyY_email", "__w2_j0OBwyY_allow_passwordless", "__w2_j0OBwyY_password", "__w2_j0OBwyY_submit_button"]
+                            },
+                            domids: {
+                                "j0OBwyY": "ld_eotdvm_48319",
+                                "F0XXnOZ": "ld_ggskro_49710",
+                                "Bliox4i": "ld_gvvnum_431",
+                                "kNsBOPU": "ld_gvvnum_429",
+                                "cq3hYOb": "ld_gvvnum_430",
+                                "ikBoXM4": "ld_gvvnum_432"
+                            }
+                        });
+                        var newComponent = W2.newComponent;
+                        var _components = [new(W2._InteractionModeBanner)("YdWCG1r", "", {
+                                "new_grid": true
+                            }, "hmac:4R3MtyRZUPRtRl", {}),
+new(require("w2.livenode").ErrorBanner)("LesdWg8", "", {
+                                "new_grid": true
+                            }, "hmac:2O1ftyp2jLiIaD", {}),
+new(require("app/view/components").JSTest)("J5puSpV", "", {}, "hmac:DAalTWsvfBzxrO", {}),
+new(require('login').LoginSignal)("cq3hYOb", "", {
+                                "uid": null
+                            }, "hmac:H4N6YL2RRfUEoi", {}),
+new(require('login').LiveLogin)("GsSIsp8", "", {}, "hmac:8RVxElLKc7Cyo5", {}),
+new(require("w2.livenode").LiveSpinner)("CPcL0nG", "", {}, "hmac:tANVsiE+cxkDRj", {}),
+new(require('facebook').FacebookAccessTokenRefresher)("yCpALof", "", {}, "hmac:8sPHrRXxQOxkic", {}),
+new(require('app/view/signup/google_').GoogleAutoLogin)("ikBoXM4", "", {
+                                "viewer": null,
+                                "scopes": ["email", "profile"]
+                            }, "hmac:ze5Lm7THgFwGFu", {}),
+new(require("flash").FlashClient)("yD9mbYJ", "", {
+                                "cp": "m",
+                                "swf_url": "https://qsf.is.quoracdn.net/-ecc40f52619f79e0.swf",
+                                "fc": "5lmsGA6o45Qd6GwSsIxp2Q==",
+                                "so": "main-client-1",
+                                "flash_vars": {
+                                    "domain": "www.quora.com"
+                                }
+                            }, "hmac:TKP67vMcwwrO3l", {}),
+new(require("app/view/layout").ContentWrapper)("kNsBOPU", "", {}, "hmac:PmJZdRvgjJvVK0", {}),
+new(require("app/view/pmsg/pmsg").PMsgContainer)("spZW02M", "", {}, "hmac:Z36MqySU3Cjjif", {}),
+new(require("app/view/layout").NGQTextImageEnlarger)("FnBGiaR", "", {}, "hmac:S4wcGVzUxxHge1", {}),
+new(require("app/view/layout").QTextEmbedEnlarger)("RMGPLph", "", {}, "hmac:fTqTKBA8YOwpQv", {}),
+new(require("app/view/layout").QTextGIFPlayer)("YU7HZNP", "", {}, "hmac:dZUKqgrmjfibWg", {}),
+new(require('app/view/signup').SignupFormBigButtons)("nl7jdNC", "", {
+                                "code": null,
+                                "is_ios": false,
+                                "no_associated_users": true,
+                                "hide_welcome_on_connect": false,
+                                "minimum_password_length": 5,
+                                "next_url": null,
+                                "tid": null,
+                                "hide_step1_header_on_step2": false,
+                                "inline_login": false,
+                                "show_explanation": false
+                            }, "hmac:b+F4sdSnUyzftq", {}),
+new(require("app/view/signup/google_").SignupGoogleConnectButton)("hZVrx3J", "google_connect_button", {
+                                "scopes": "email profile",
+                                "tracking_prefix": "",
+                                "prompt_ota_install": true
+                            }, "hmac:dVzuhJyHxdVbMV", {}),
+new(require("facebook").SignupFacebookConnectButton)("bDL7c2J", "facebook_connect_button", {
+                                "perms": "user_hometown,user_location,user_work_history,user_education_history,email,publish_actions,read_friendlists,user_likes",
+                                "tracking_prefix": ""
+                            }, "hmac:Wst6HxW8jmHgtn", {}),
+new(require("twitter").SignupTwitterConnectButton)("BPIGlZx", "twitter_connect_button", {}, "hmac:4GXX54IqrPsFzu", {}),
+new(W2.InputValidator)("Sr1zzZs", "name_validator", {
+                                "id": "@name"
+                            }, "hmac:iYa3AbfkKH5eZM", {}),
+new(W2.InputValidator)("SU40Ino", "email_validator", {
+                                "id": "@email"
+                            }, "hmac:fMrfC6SP0jlQLX", {}),
+new(W2.InputValidator)("xhmwLxA", "password_validator", {
+                                "id": "@password"
+                            }, "hmac:G5tPizlWGiDeuW", {}),
+new(require("login").LoggedOutHomeHeaderInlineLogin)("j0OBwyY", "", {}, "hmac:Yg2NGe+k8xotzu", {}),
+new(require('login').LoginPageLoginListener)("jxj9DQ9", "", {
+                                "next": "https://www.quora.com/"
+                            }, "hmac:nuxb4Hsod+K+Re", {})];
+                        W2.registerComponents(_components);
+                        W2.onLoad(_components, true);
+                        if (window.w2_timing)
+                            w2_timing.logTime('componentInitEnd');
+
+                        (function () {
+                            w2_timing.logTime('postOnLoad');
+                            var timing = w2_timing.timing;
+                            $.whenLoaded(1, function () {})
+                        })();
+                    })
+                }, "Initialize components");
+            }
+        });
+    </script>
+</body>
+
+</html>
+<!--perf-->
+<script type="text/javascript">
+    var script_defer_queue = script_defer_queue || [];
+    script_defer_queue.push({
+        env: window,
+        fn: function () {
+            require.enqueue(function (require) {
+                var twRootNode = document.createElement("div");
+                twRootNode.setAttribute("id", "tw-root");
+                document.body.appendChild(twRootNode);
+                require("twitter").asyncInit();
+            });
+            require('win.load').add(function () {
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                        (i[r].q = i[r].q || []).push(arguments)
+                    }, i[r].l = 1 * new Date();
+                    a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-16618355-1', 'auto');
+                ga('send', 'pageview');
+                ga('set', 'dimension1', 'Home');
+                ga('set', 'dimension2', 'False');
+                ga('set', 'dimension3', 'False');
+            });
+        }
+    });
+</script>
+<script type="text/javascript">
+    var script_defer_queue = script_defer_queue || [];
+    script_defer_queue.push({
+        env: window,
+        fn: function () {
+            require.enqueue(function (require) {
+                $(document).ready(function () {
+                    w2_timing.logTime('documentReady');
+                });
+                $(window).load(function () {
+                    var timing = w2_timing.timing;
+                    w2_timing.logTime('windowLoad');
+
+                    timing.server_time = 33.23;
+                    timing.window_id = "dep3609-1895137764478511736";
+                });
+            });
+
+            var timing = require("w2.timing").timing;
+            timing.page = 33.23;
+            timing.request = 49.33;
+        }
+    });
+</script>

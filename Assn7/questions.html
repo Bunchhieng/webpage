@@ -1,0 +1,75 @@
+<!-- 
+        File: Assn7/questions.html
+        Author: Bunchhieng Soth, bsoth@cs.uml.edu
+        Created on: 11/05/2014
+        
+        This web page is for GUI course, assignment 7.
+        -->
+<div class="container">
+    <h3>Common Interview Questions</h3>
+    <hr>
+    <p>For each question, if the <span style="font-wieght:bold">SQL Commands differ for Oracle, MySQL and SQL Server Databases</span>, specific queries with respect to a database is provided. If the answer are same for all databases, only one query is specified.</p>
+
+    <table class="table table-bordered">
+        <thead>
+            <td>EMPLOYEE_ID</td>
+            <td>FIRST_NAME</td>
+            <td>LAST_NAME</td>
+            <td>SALARY</td>
+            <td>JOINING_DATE</td>
+            <td>DEPARTMENT</td>
+        </thead>
+        <tr>
+            <td>1</td>
+            <td>John</td>
+            <td>Abraham</td>
+            <td>1000000</td>
+            <td>01-JAN-13 12.00.00 AM</td>
+            <td>Banking</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>John</td>
+            <td>Abraham</td>
+            <td>1000000</td>
+            <td>01-JAN-13 12.00.00 AM</td>
+            <td>Banking</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>John</td>
+            <td>Abraham</td>
+            <td>1000000</td>
+            <td>01-JAN-13 12.00.00 AM</td>
+            <td>Banking</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>John</td>
+            <td>Abraham</td>
+            <td>1000000</td>
+            <td>01-JAN-13 12.00.00 AM</td>
+            <td>Banking</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>John</td>
+            <td>Abraham</td>
+            <td>1000000</td>
+            <td>01-JAN-13 12.00.00 AM</td>
+            <td>Banking</td>
+        </tr>
+    </table>
+    <h3 style="color:red">SQL Queries Interview Questions and Answers on "SQL Select"</h3>
+    <ol>
+        <li>Get all employee details from the employee table</li>
+        <code>SELECT * FROM Employee</code>
+        <br />
+        <li>Get FIRST_NAME, LAST_NAME from Employee table</li>
+        <code>SELECT FIRST_NAME, LAST_NAME FROM Employee</code>
+        <li>Get FIRST_NAME FROM Employee table using alias name "Employee Name"</li>
+        <code>SELECT FIRST_NAME Employee Name FROM Employee</code>
+        <li>Get FIRST_NAME FROM EMPLOYEE table in upper case</li>
+        <code>SELECT upper(FIRST_NAME) FROM Employee</code>
+    </ol>
+</div>

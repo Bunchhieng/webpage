@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+   <style type="text/css">
+      table {
+         border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+         border: 1px solid black;
+      }
+   </style>
+   <script type="text/javascript">
+      function createTable() {
+         var pOne = parseInt(document.getElementById("pOne").value);
+         var pTwo = parseInt(document.getElementById("pTwo").value);
+         var pThree = parseInt(document.getElementById("pThree").value);
+         var pFour = parseInt(document.getElementById("pFour").value);
+         
+         var nRows = pTwo - pOne;
+         var nCols = pFour - pThree;
+         var oString = "";
+         if (nRows < 1 || nCols < 1 || nRows > 99 || nCols > 99 || isNaN(nCols) || isNaN(nRows)) {
+            document.getElementById("onTable").innerHTML = "<p style='color:red;font-weight:bold;font-size:xx-large'>Rows or Columns out of Range!</p>Rows=" + nRows + " Columns=" + nCols;
+            return false;
+         }
+         oString = "<table style='border-width:2px;border-style:solid;'><tr style='background-color:yellow'>";
+         for (i = pOne; i < pTwo; i++) {
+            if (i > 0) oString += "<tr>";
+            for (j = pThree; j < pFour; j++) {
+               if (i == 0) {
+                  if (j == 0) oString += "<td style='background-color:yellow'>&nbsp;</td>";
+                  else oString += "<td>" + j + "</td>";
+               } else {
+                  if (j == 0) oString += "<td style='background-color:yellow'>" + i + "</td>";
+                  else oString += "<td>" + (i * j) + "</td>";
+               }
+            }
+            oString += "</tr>";
+         }
+         oString += "</table>";
+         document.getElementById("onTable").innerHTML = oString;
+         return true;
+      }
+   </script>
+</head>
+
+<body>
+   <form action="javascript:void(0)" onsubmit="createTable()">
+      <input type="text" size="8" id="pOne">
+      <input type="text" size="8" id="pTwo">
+      <input type="text" size="8" id="pThree">
+      <input type="text" size="8" id="pFour">
+      <input type="submit" value="Submit">
+   </form>
+
+   <div id="onTable"></div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Inputs to Json File</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="js/input2Json.js"></script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <form action="javascript:void(0)" onsubmit="getInputs()">
+            Email:
+            <br />
+            <input type="text" name="username" placeholder="Enter your email..." id="email">
+            <div id="errorUser"></div>
+            <br />Password:
+            <br />
+            <input type="password" name="password" placeholder="Enter your password..." id="password">
+            <div id="errorPass"></div>
+            <br />
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div id="content"></div>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+/*
+    File: css/style.css
+    Author: Bunchhieng Soth, bsoth@cs.uml.edu
+
+    Main style sheet 
+*/
+
+@import url(//fonts.googleapis.com/css?family=RobotoDraft&lang=en);
+
+/* html and body
+*********************************************/
+
+html,
+body {
+    height: 100%;
+    /* The html and body elements cannot have any padding or margin. */
+}
+body {
+    font-family: 'RobotoDraft', Arial, sans-serif;
+    font-size: 17px;
+}
+/* content
+*********************************************/
+#content {
+    min-height: 100%;
+}
+.jumbotron {
+    margin-right: 60px;
+    padding: 100px;
+    background: #dcdfe5;
+}
+.col-md-4 {
+    background-color: #dcdfd5;
+    width: 357px;
+    margin: 5px;
+    height: 200px;
+    border: 1px solid #656565;
+    border-radius: 10px;
+}
+/* Wrapper for page content to push down footer 
+**********************************************/
+
+#wrap {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    /* Negative indent footer by it's height */
+    margin: 0 auto -60px;
+}
+/* Set the fixed height of the footer here 
+********************************************/
+
+#push,
+#footer {
+    height: 60px;
+}
+#footer {
+    text-align: center;
+    background-color: #0b0909;
+    position: absolute;
+    width: 100%;
+}
+/* Lastly, apply responsive CSS fixes as necessary 
+*******************************************/
+
+@media (max-width: 767px) {
+    #footer {
+        margin-left: -20px;
+        margin-right: -20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+/* jQuery UI
+*******************************************/
+.ui-widget-header {
+    background: #b9cd6d;
+    border: 1px solid #b9cd6d;
+    color: #FFFFFF;
+    font-weight: bold;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>In Class Exercise</title>
+    <!-- 
+        Author: Bunchhieng Soth, bsoth@cs.uml.edu
+        
+        A single page with a few links, after clicked; content changes in the #content div.
+        Created on: 10/30/2014
+        -->
+
+    <!-- Add favicon to the page -->
+    <link rel="icon" href="android.png" type="image/png">
+
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=Roboto);
+        html {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            font-size: 20px;
+        }
+        body {
+            background: url(img/d.jpg) no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+        }
+        #content {
+            position: relative;
+            margin-top: 500px;
+        }
+        #navbar {
+            text-align: center;
+            border: 1px solid #656565;
+            background: #656565;
+            height: 150px;
+            padding: 30px;
+        }
+        a {
+            color: white;
+            text-decoration: none;
+            margin: 30px;
+        }
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+        .all {
+            margin: auto;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            padding: 20px;
+        }
+        h4 {
+            color: white;
+        }
+        img {
+            position: absolute;
+            left: 40%;
+        }
+    </style>
+
+    <!-- Load jQuery -->
+    <script src="js/jquery-2.1.1.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <!-- Start navbar -->
+    <div id="navbar">
+        <object data="https://google.github.io/material-design-icons/action/svg/ic_android_24px.svg" width="40px" height="40px" id="bigger"></object>
+        <h4>In Class Exercise. Click on link below to show content.</h4>
+        <nav>
+            <a href="#first" id="first">Text</a>
+            <a href="#second" id="second">SVG Image</a>
+            <a href="#third" id="third">Web Page</a>
+            <a href="#fourth" id="fourth">Youtube</a>
+        </nav>
+    </div>
+    <!-- end navbar -->
+
+    <!-- Output content after clicked -->
+    <div id="content"></div>
+    <script src="js/navigation.js" type="text/javascript"></script>
+</body>
+
+</html>

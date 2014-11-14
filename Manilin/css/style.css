@@ -1,0 +1,50 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+ html {
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    background-image: url('/img/background.jpg');
+}
+h1 {
+    text-align: center;
+}
+#logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 150px;
+}
+#disqus_thread {
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10px;
+    left: 300px;
+    right: 90px;
+}
+#navbar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    vertical-align: baseline;
+    border-right: 1px solid white;
+    background-color: #7FDBFF;
+}
+#navlink li {
+    font-size: 20px;
+    list-style-type: none;
+    margin: 40px 0px;
+}
+#navlink a {
+    color: white;
+    text-decoration: none;
+}
+#navlink a:hover {
+    text-decoration: none;
+    color: grey;
+}
+#navlink {
+    margin-top: 200px;
+}
